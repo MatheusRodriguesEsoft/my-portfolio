@@ -4,13 +4,16 @@ import Image from 'next/image'
 import { iconsSkills } from '@/utils/icons'
 import { works } from '@/utils/works'
 import { Element } from 'react-scroll'
+import { useContext } from 'react'
+import { ActionsContext } from '@/context/ActionsContext'
 
 export default function Home() {
+  const { sectionRefs } = useContext(ActionsContext)
   return (
     <main className={styles.main}>
       <div className={styles.content}>
         <Element name={'home'} className={'element'} id={'home'}>
-          <section className={styles.section}>
+          <section className={styles.section} ref={sectionRefs[0]} id={'home'}>
             <div>
               <h1>Matheus Rodrigues</h1>
               <span>Engenheiro de Software</span>
@@ -33,7 +36,11 @@ export default function Home() {
           </section>
         </Element>
         <Element name={'skills'} className={'element'} id={'skills'}>
-          <section className={styles.section}>
+          <section
+            className={styles.section}
+            ref={sectionRefs[1]}
+            id={'skills'}
+          >
             <span>
               Desde 2018 atuando como Engenheiro de Software e desenvolvedor web
               Full Stack essas são minhas sikills:{' '}
@@ -58,7 +65,7 @@ export default function Home() {
           </section>
         </Element>
         <Element name={'works'} className={'element'} id={'works'}>
-          <section className={styles.section}>
+          <section className={styles.section} ref={sectionRefs[2]} id={'works'}>
             Meus Trabalhos:
             <div>
               {works.map((work) => (
@@ -70,7 +77,11 @@ export default function Home() {
           </section>
         </Element>
         <Element name={'contact'} className={'element'} id={'contact'}>
-          <section className={styles.section}>
+          <section
+            className={styles.section}
+            ref={sectionRefs[3]}
+            id={'contact'}
+          >
             Contato:
             <div>
               <Image

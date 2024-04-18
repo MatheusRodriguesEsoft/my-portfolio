@@ -1,39 +1,22 @@
 'use client'
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useContext, useEffect, useRef, useState } from 'react'
 import { Link } from 'react-scroll'
 import styles from './styles/TopBar.module.css'
 import LangEnum from '@/enum/lang-enum'
 import ptBr from './i18n/ptBR'
 import esES from './i18n/esES'
 import enUS from './i18n/enUS'
+import { ActionsContext } from '@/context/ActionsContext'
 
 const TopBar = () => {
+  const { visibleSectionIndex } = useContext(ActionsContext)
   const [lang, setLang] = useState<LangEnum>(LangEnum.EN_US)
   const [underlineStyle, setUnderlineStyle] = useState({})
-  const [activeMenuItem, setActiveMenuItem] = useState<number | null>(null);
-  const menuRef = useRef<HTMLDivElement>(null);
+  const menuRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     defineLanguage(lang)
-    // Adicionando o ouvinte de evento de rolagem personalizado quando o componente é montado
-    window.addEventListener('customScroll', handleCustomScroll)
-
-    return () => {
-      // Removendo o ouvinte de evento de rolagem personalizado quando o componente é desmontado
-      window.removeEventListener('customScroll', handleCustomScroll)
-    }
   }, [lang])
-
-  const handleCustomScroll = () => {
-    // Lógica para atualizar o estilo da barra de underline aqui
-    // Você pode usar menuRef.current para obter uma referência ao elemento do menu
-  }
-
-  // Função para acionar o evento de rolagem personalizado
-  const triggerCustomScrollEvent = () => {
-    const customScrollEvent = new Event('customScroll')
-    window.dispatchEvent(customScrollEvent)
-  }
 
   const defineLanguage = (lang: LangEnum) => {
     let home
@@ -70,9 +53,11 @@ const TopBar = () => {
     }
   }
 
-  // Função para atualizar o estilo da barra de underline
-  const updateUnderline = (index: number) => {
-    setActiveMenuItem(index);
+  useEffect(() => {
+    setActiveItem(visibleSectionIndex)
+  }, [visibleSectionIndex])
+
+  const setActiveItem = (index: number) => {
     const menuItem = document.querySelectorAll(`.${styles.menu} ul li`)[index]
     const { left, width } = menuItem.getBoundingClientRect()
     const parentLeft: any =
@@ -80,17 +65,13 @@ const TopBar = () => {
     setUnderlineStyle({ left: left - parentLeft, width })
   }
 
+  const updateUnderline = (index: number) => {
+    setActiveItem(index)
+  }
+
   const onMouseOut = () => {
-    // console.log(activeMenuItem)
-    // if (activeMenuItem !== null) {
-    //   const menuItem = menuRef.current?.querySelectorAll(`.${styles.menu} ul li`)[activeMenuItem];
-    //   if (menuItem) {
-    //     const { left, width } = menuItem.getBoundingClientRect();
-    //     const parentLeft: any = menuItem.parentElement?.getBoundingClientRect().left;
-    //     setUnderlineStyle({ left: left - parentLeft, width });
-    //   }
-    // }
-  };
+    setActiveItem(visibleSectionIndex)
+  }
 
   return (
     <div className={styles.container}>
@@ -101,46 +82,22 @@ const TopBar = () => {
             onMouseOut={onMouseOut}
             id={'home'}
           >
-            <Link
-              to={'home'}
-              spy={true}
-              smooth={true}
-              duration={0}
-              onSetActive={() => updateUnderline(0)}
-            >
+            <Link to={'home'} spy={true} smooth={true} duration={0}>
               {defineLanguage(lang).home}
             </Link>
           </li>
           <li onMouseEnter={() => updateUnderline(1)} onMouseOut={onMouseOut}>
-            <Link
-              to={'skills'}
-              spy={true}
-              smooth={true}
-              duration={300}
-              onSetActive={() => updateUnderline(1)}
-            >
+            <Link to={'skills'} spy={true} smooth={true} duration={300}>
               {defineLanguage(lang).skills}
             </Link>
           </li>
           <li onMouseEnter={() => updateUnderline(2)} onMouseOut={onMouseOut}>
-            <Link
-              to={'works'}
-              spy={true}
-              smooth={true}
-              duration={300}
-              onSetActive={() => updateUnderline(2)}
-            >
+            <Link to={'works'} spy={true} smooth={true} duration={300}>
               {defineLanguage(lang).works}
             </Link>
           </li>
           <li onMouseEnter={() => updateUnderline(3)} onMouseOut={onMouseOut}>
-            <Link
-              to={'contact'}
-              spy={true}
-              smooth={true}
-              duration={300}
-              onSetActive={() => updateUnderline(3)}
-            >
+            <Link to={'contact'} spy={true} smooth={true} duration={300}>
               {defineLanguage(lang).contact}
             </Link>
           </li>

@@ -2,6 +2,8 @@ import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
 import TopBar from './components/TopBar/TopBar'
+import Head from './head'
+import { ActionsProvider } from '@/context/ActionsContext'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -17,10 +19,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>
-        <TopBar />
-        {children}
-      </body>
+      <Head />
+      <ActionsProvider>
+        <body className={inter.className}>
+          <TopBar />
+          {children}
+        </body>
+      </ActionsProvider>
     </html>
   )
 }
