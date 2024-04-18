@@ -7,15 +7,18 @@ import ptBr from './i18n/ptBR'
 import esES from './i18n/esES'
 import enUS from './i18n/enUS'
 import { ActionsContext } from '@/context/ActionsContext'
+import { labelLangs } from '@/utils/lang'
 
 const TopBar = () => {
   const { visibleSectionIndex } = useContext(ActionsContext)
   const [lang, setLang] = useState<LangEnum>(LangEnum.EN_US)
   const [underlineStyle, setUnderlineStyle] = useState({})
+  const [showButtons, setShowButtons] = useState(false)
   const menuRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     defineLanguage(lang)
+    setActiveItem(visibleSectionIndex)
   }, [lang])
 
   const defineLanguage = (lang: LangEnum) => {
@@ -55,6 +58,14 @@ const TopBar = () => {
 
   useEffect(() => {
     setActiveItem(visibleSectionIndex)
+    setActiveItem(visibleSectionIndex)
+    const handleResize = () => {
+      setActiveItem(visibleSectionIndex)
+    }
+    window.addEventListener('resize', handleResize)
+    return () => {
+      window.removeEventListener('resize', handleResize)
+    }
   }, [visibleSectionIndex])
 
   const setActiveItem = (index: number) => {
@@ -71,6 +82,11 @@ const TopBar = () => {
 
   const onMouseOut = () => {
     setActiveItem(visibleSectionIndex)
+  }
+
+  const getLabelByValue = (value: string) => {
+    const foundLabel = labelLangs.find((lang) => lang.value === value)
+    return foundLabel ? foundLabel.label : 'N/A'
   }
 
   return (
@@ -103,18 +119,43 @@ const TopBar = () => {
           </li>
           <div className={styles.animation} style={underlineStyle}></div>
         </ul>
+        <div
+          className={styles.actions_lang_container}
+          onClick={() => setShowButtons(!showButtons)}
+        >
+          <div onMouseEnter={() => setShowButtons(true)}>
+            <span className={styles.lang_label}>{getLabelByValue(lang)}</span>
+          </div>
+          {showButtons && (
+            <div className={styles.btn_langs_container}>
+              <button
+                className={`${styles.btn_lang} ${
+                  lang === LangEnum.EN_US ? styles.hidden : ''
+                }`}
+                onClick={() => setLang(LangEnum.EN_US)}
+              >
+                {getLabelByValue(LangEnum.EN_US)}
+              </button>
+              <button
+                className={`${styles.btn_lang} ${
+                  lang === LangEnum.ES_ES ? styles.hidden : ''
+                }`}
+                onClick={() => setLang(LangEnum.ES_ES)}
+              >
+                {getLabelByValue(LangEnum.ES_ES)}
+              </button>
+              <button
+                className={`${styles.btn_lang} ${
+                  lang === LangEnum.PT_BR ? styles.hidden : ''
+                }`}
+                onClick={() => setLang(LangEnum.PT_BR)}
+              >
+                {getLabelByValue(LangEnum.PT_BR)}
+              </button>
+            </div>
+          )}
+        </div>
       </nav>
-      <div>
-        <button onClick={() => setLang(LangEnum.EN_US)}>
-          {LangEnum.EN_US}
-        </button>
-        <button onClick={() => setLang(LangEnum.ES_ES)}>
-          {LangEnum.ES_ES}
-        </button>
-        <button onClick={() => setLang(LangEnum.PT_BR)}>
-          {LangEnum.PT_BR}
-        </button>
-      </div>
     </div>
   )
 }

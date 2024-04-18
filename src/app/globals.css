@@ -3,7 +3,7 @@
   margin: 0;
   padding: 0;
   color: rgb(243, 248, 255);
-  background-color: rgb(1, 2, 29);
+  background-color: #0d051c;
 }
 html {
   scroll-snap-type: y mandatory;
