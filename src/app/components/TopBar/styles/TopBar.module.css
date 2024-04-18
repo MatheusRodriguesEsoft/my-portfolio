@@ -1,0 +1,66 @@
+.container {
+    width: 100%;
+    height: 7rem;
+    position: fixed;
+}
+
+.menu {
+    width: 100%;
+    height: 5rem;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.menu ul {
+    width: 40%;
+    height: 2.5rem;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    position: relative; /* Define posição relativa */
+}
+
+.menu a {
+    text-decoration: none;
+    font-weight: 100;
+    color: white;
+    position: relative;
+    z-index: 1;
+    display: inline-block;
+    text-align: center;
+}
+
+/* Adiciona o efeito de underline */
+.menu .animation {
+    position: absolute;
+    bottom: 0;
+    height: 3px;
+    border-radius: 2px;
+    background-color: #5c10f4;
+    transition: left 0.3s ease, width 0.3s ease; /* Adiciona transição */
+}
+.menu li:hover {
+    cursor: pointer;
+}
+/* Ajusta a posição do underline quando o mouse passa sobre */
+.menu li:nth-child(1):hover .animation {
+    left: 0;
+    width: 25%; /* Largura do underline */
+}
+
+.menu li:nth-child(2):hover .animation {
+    left: 25%; /* Largura do underline */
+    width: 25%; /* Largura do underline */
+}
+
+.menu li:nth-child(3):hover .animation {
+    left: 50%; /* Largura do underline */
+    width: 25%; /* Largura do underline */
+}
+
+.menu li:nth-child(4):hover .animation {
+    left: 75%; /* Largura do underline */
+    width: 25%; /* Largura do underline */
+}
