@@ -8,6 +8,8 @@ import { useContext, useState } from 'react'
 import { ActionsContext } from '@/context/ActionsContext'
 import Lottie from 'react-lottie'
 import * as animationData from '../../public/lottie/Animation - 1714008687731.json'
+import * as animationTopData from '../../public/lottie/Animation - 1714099708508.json'
+
 import 'animate.css'
 
 export default function Home() {
@@ -17,7 +19,6 @@ export default function Home() {
   const defaultOptions = {
     loop: true,
     autoplay: true,
-    animationData: animationData,
     rendererSettings: {
       preserveAspectRatio: 'xMidYMid slice',
     },
@@ -25,17 +26,34 @@ export default function Home() {
 
   return (
     <main className={styles.main}>
+      <div className={styles.top_content}>
+        <Lottie
+          options={{ ...defaultOptions, animationData: animationTopData }}
+          height={200}
+          width={200}
+          isStopped={false}
+          isPaused={false}
+        />
+      </div>
       <div className={styles.content}>
         <Element name={'home'} className={'element'} id={'home'}>
           <section className={styles.section} ref={sectionRefs[0]} id={'home'}>
             <div className={styles.home_content}>
               <div className={styles.bio_content}>
                 <h1 className={styles.h1}>
-                  <span className={`${styles.first_name} animate__animated animate__fadeInLeftBig`}>Matheus</span>
-                  <span className={`${styles.last_name} animate__animated animate__fadeInRightBig`}>Rodrigues</span>
+                  <span
+                    className={`${styles.first_name} animate__animated animate__fadeInLeftBig`}
+                  >
+                    Matheus
+                  </span>
+                  <span
+                    className={`${styles.last_name} animate__animated animate__fadeInRightBig`}
+                  >
+                    Rodrigues
+                  </span>
                 </h1>
                 <span className={styles.span}>Engenheiro de Software</span>
-                <span className={styles.span}>
+                <span className={`${styles.bio}`}>
                   Sou um engenheiro de software apaixonado pela arte de
                   transformar ideias em realidade digital. Com uma sólida
                   formação e anos de experiência como desenvolvedor full stack,
@@ -49,12 +67,12 @@ export default function Home() {
                   está procurando um profissional que não apenas entregue
                   resultados, mas os eleve a um novo patamar, estou pronto para
                   colaborar em seu próximo projeto. Vamos construir algo
-                  extraordinário juntos
+                  extraordinário juntos?!
                 </span>
               </div>
               <div className={styles.lottie_content}>
                 <Lottie
-                  options={defaultOptions}
+                  options={{ ...defaultOptions, animationData: animationData }}
                   height={800}
                   width={800}
                   isStopped={false}

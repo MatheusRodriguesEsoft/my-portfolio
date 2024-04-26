@@ -2,7 +2,11 @@
   height: 100vh;
   padding-top: 7rem;
 }
-
+.top_content {
+  z-index: 100;
+  position: absolute;
+  background-color: transparent;
+}
 .content {
   display: flex;
   align-items: center;
@@ -54,6 +58,11 @@
 .span {
   font-weight: 100;
   font-size: 14pt;
+}
+.bio {
+  text-align: justify;
+  font-weight: 100;
+  font-size: 15pt;
 }
 .lottie_content {
   z-index: 1;
