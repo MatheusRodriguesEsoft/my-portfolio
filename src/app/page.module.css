@@ -2,17 +2,62 @@
   height: 100vh;
   padding-top: 7rem;
 }
+
 .content {
- display: flex;
- align-items: center;
- justify-content: center;
- flex-direction: column;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
 }
+
 .section {
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
+}
+
+.home_content {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.bio_content {
+  width: 50%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.h1 {
+  display: flex;
+  flex-direction: column;
+  font-size: 80pt;
+  text-transform: uppercase;
+  z-index: 2;
+  
+}
+.first_name {
+  font-weight: 100;
+  z-index: 1;
+}
+.last_name {
+  font-weight: 300;
+  color: #5c10f4;
+  margin-left: 5rem;
+  margin-top: -2rem;
+  
+}
+.span {
+  font-weight: 100;
+  font-size: 14pt;
+}
+.lottie_content {
+  z-index: 1;
+  pointer-events: none;
 }
 
 .skills_icons_container {
@@ -22,12 +67,24 @@
   align-items: center;
   justify-content: space-between;
 }
+
 .skills_icons {
   display: flex;
-    flex-wrap: wrap; 
-    justify-content: center; 
-    gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
 }
+
 .icon {
   user-select: none;
+  width: 8rem;
+}
+
+.skill_icon {
+  width: 8rem;
+  background-color: red;
+}
+
+.skill_icon:hover {
+  cursor: pointer;
 }

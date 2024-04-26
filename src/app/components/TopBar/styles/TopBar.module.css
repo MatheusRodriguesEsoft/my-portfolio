@@ -1,20 +1,11 @@
-.container {
-    width: 100%;
-    height: 7rem;
-    padding: 0 2rem 0 0;
-    position: fixed;
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-}
-
 .menu {
     width: 100%;
     height: 5rem;
     display: flex;
+    position: fixed;
     align-items: center;
     justify-content: flex-end;
-
+    z-index: 99;
 }
 
 .menu ul {
@@ -31,6 +22,7 @@
 .menu a {
     text-decoration: none;
     font-weight: 100;
+    font-size: 14pt;
     color: white;
     position: relative;
     z-index: 1;

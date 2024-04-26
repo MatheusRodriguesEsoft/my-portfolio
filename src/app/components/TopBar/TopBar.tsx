@@ -8,6 +8,7 @@ import esES from './i18n/esES'
 import enUS from './i18n/enUS'
 import { ActionsContext } from '@/context/ActionsContext'
 import { labelLangs } from '@/utils/lang'
+import 'animate.css'
 
 const TopBar = () => {
   const { visibleSectionIndex } = useContext(ActionsContext)
@@ -90,34 +91,50 @@ const TopBar = () => {
   }
 
   return (
-    <div className={styles.container}>
+    <>
       <nav className={styles.menu} ref={menuRef}>
         <ul>
           <li
+            className={'animate__animated animate__slideInDown'}
             onMouseEnter={() => updateUnderline(0)}
             onMouseOut={onMouseOut}
             id={'home'}
           >
-            <Link to={'home'} spy={true} smooth={true} duration={0}>
+            <Link to={'home'} spy={true} smooth={true} duration={300}>
               {defineLanguage(lang).home}
             </Link>
           </li>
-          <li onMouseEnter={() => updateUnderline(1)} onMouseOut={onMouseOut}>
+          <li
+            className={'animate__animated animate__slideInDown'}
+            onMouseEnter={() => updateUnderline(1)}
+            onMouseOut={onMouseOut}
+          >
             <Link to={'skills'} spy={true} smooth={true} duration={300}>
               {defineLanguage(lang).skills}
             </Link>
           </li>
-          <li onMouseEnter={() => updateUnderline(2)} onMouseOut={onMouseOut}>
+          <li
+            className={'animate__animated animate__slideInDown'}
+            onMouseEnter={() => updateUnderline(2)}
+            onMouseOut={onMouseOut}
+          >
             <Link to={'works'} spy={true} smooth={true} duration={300}>
               {defineLanguage(lang).works}
             </Link>
           </li>
-          <li onMouseEnter={() => updateUnderline(3)} onMouseOut={onMouseOut}>
+          <li
+            className={'animate__animated animate__slideInDown'}
+            onMouseEnter={() => updateUnderline(3)}
+            onMouseOut={onMouseOut}
+          >
             <Link to={'contact'} spy={true} smooth={true} duration={300}>
               {defineLanguage(lang).contact}
             </Link>
           </li>
-          <div className={styles.animation} style={underlineStyle}></div>
+          <div
+            className={`${styles.animation} animate__animated animate__fadeInRightBig`}
+            style={underlineStyle}
+          ></div>
         </ul>
         <div
           className={styles.actions_lang_container}
@@ -156,7 +173,7 @@ const TopBar = () => {
           )}
         </div>
       </nav>
-    </div>
+    </>
   )
 }
 
