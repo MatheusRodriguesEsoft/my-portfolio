@@ -89,7 +89,7 @@ export default function Home() {
                   }
                   className={styles.btn}
                 >
-                  MY SKILLS
+                  SKILLS
                 </button>
               </div>
             </div>
@@ -109,10 +109,9 @@ export default function Home() {
               <div className={styles.skills_icons_container}>
                 <div className={styles.skills_icons_card}>
                   {iconsSkills.map((icon) => (
-                    <Link href={icon.url} target={'_blank'}>
+                    <Link key={icon.id} href={icon.url} target={'_blank'}>
                       <div
                         className={styles.skill_icon}
-                        key={icon.id}
                         onMouseEnter={() => handleMouseEnter(icon.id)}
                         onMouseLeave={handleMouseLeave}
                       >

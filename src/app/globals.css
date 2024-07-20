@@ -18,6 +18,7 @@ html {
   scroll-snap-type: y mandatory;
   scroll-snap-stop: normal;
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 section {
