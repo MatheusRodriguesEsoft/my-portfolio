@@ -1,28 +1,51 @@
-.menu {
+.content {
     width: 100%;
     height: 5rem;
     display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.menu {
+    width: 100%;
+    max-width: 70%;
+    display: flex;
     position: fixed;
     align-items: center;
-    justify-content: flex-end;
+    justify-content: space-evenly;
     z-index: 99;
+    font-weight: 300;
+    font-size: 12pt;
+    background-color: black;
+}
+
+.logo {
+    width: 30%;
+    font-size: 14pt;
+    font-weight: 600;
+    font-family: "Questrial", serif;
+    z-index: 2;
+    background-image: linear-gradient(to right, #5c10f4, #8d10f4, #5d2ac2, #5c10f4);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: black;
 }
 
 .menu ul {
-    width: 40%;
+    width: 50%;
     height: 2.5rem;
     list-style: none;
     display: flex;
     align-items: center;
     justify-content: space-around;
     position: relative;
+    padding: 0 2rem;
     /* Define posição relativa */
 }
 
 .menu a {
     text-decoration: none;
-    font-weight: 100;
-    font-size: 14pt;
     color: white;
     position: relative;
     z-index: 1;
@@ -74,16 +97,12 @@
 }
 
 .actions_lang_container {
-    width: 8rem;
     position: relative;
-    height: 12rem;
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: transparent;
-   
-    
 }
+
 .lang_label:hover {
     cursor: pointer;
 }
@@ -93,19 +112,20 @@
 }
 
 .btn_langs_container {
-    background-color: transparent;
     position: absolute;
     width: 4rem;
     height: 5rem;
     display: flex;
     flex-direction: column;
-    bottom: -.5rem;
+    top: 2rem;
     transition: all .5s;
 }
+
 .btn_lang {
     font-weight: 100;
     margin-bottom: .8rem;
 }
+
 .btn_lang:hover {
     font-weight: 200;
     color: #5c10f4;

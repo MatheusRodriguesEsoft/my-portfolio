@@ -1,6 +1,5 @@
 .main {
   height: 100vh;
-  padding-top: 7rem;
 }
 
 .top_content {
@@ -17,34 +16,50 @@
 }
 
 .section {
+  width: 100vw;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  border-bottom: 1px solid rgb(0, 0, 0);
 }
 
 .home_content {
-  display: flex;
-  align-items: center;
-  justify-content: space-evenly;
-}
-
-.bio_content {
-  width: 50%;
   height: 100%;
+  width: 100%;
+  max-width: 65%;
+  margin-top: 5rem;
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
+}
+
+.span {
+  font-size: 14pt;
+  font-weight: 100;
+  text-align: justify;
 }
 
 .h1 {
   display: flex;
-  flex-direction: column;
-  font-size: 80pt;
-  text-transform: uppercase;
+  font-size: 50pt;
+  font-weight: 600;
+  font-family: "Questrial", serif;
   z-index: 2;
+  background-image: linear-gradient(to right, #5c10f4, #8d10f4, #5d2ac2, #5c10f4);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: black;
+  margin: 1.5rem 0;
 
+}
+
+.p {
+  font-size: 14pt;
+  font-weight: 100;
+  text-align: justify;
+  height: 7rem;
 }
 
 .first_name {
@@ -101,9 +116,10 @@
 
 .skills_content {
   position: relative;
-  width: 65%;
+  max-width: 65%;
   display: flex;
   flex-direction: column;
+  background-color: #9e6eff;
 }
 
 
