@@ -11,7 +11,7 @@ interface ButtonProps {
 
 const Button = ({ label, icon, width, href }: ButtonProps) => {
   return (
-    <Link href={href} about="_blank" style={{width: width}} className={styles.button}>
+    <Link href={href} target="_blank" style={{width: width}} className={styles.button}>
       {icon && <span className={styles.icon}>{icon}</span>}
       {label && <span>{label}</span>}
     </Link>
