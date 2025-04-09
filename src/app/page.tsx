@@ -60,10 +60,10 @@ export default function Home() {
               )}
             </div>
             <div className={styles.btns}>
-            <Button width={'3rem'} icon={<FaWhatsapp />} />
-            <Button width={'3rem'} icon={<HiOutlineMail />} />
-            <Button width={'3rem'} icon={<FaLinkedin />} />
-            <Button width={'3rem'} icon={<AiOutlineGithub />} />
+            <Button width={'3rem'} icon={<FaWhatsapp />} href={'https://wa.me/+5561998896788'}/>
+            <Button width={'3rem'} icon={<HiOutlineMail />} href={'mailto:matheus.rodrigues.esoft@gmail.com'}/>
+            <Button width={'3rem'} icon={<FaLinkedin />} href={'https://www.linkedin.com/in/matheus-rodrigues-in/'}/>
+            <Button width={'3rem'} icon={<AiOutlineGithub />} href={'https://github.com/MatheusRodriguesEsoft'}/>
             </div>
            
           </div>
