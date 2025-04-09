@@ -1,5 +1,11 @@
 "use client";
-import React, { useContext, useEffect, useRef, useState } from "react";
+import React, {
+  useContext,
+  useEffect,
+  useLayoutEffect,
+  useRef,
+  useState,
+} from "react";
 import { Link } from "react-scroll";
 import styles from "./styles/TopBar.module.css";
 import LangEnum from "@/enum/lang-enum";
@@ -17,6 +23,10 @@ const TopBar = () => {
   const [showButtons, setShowButtons] = useState(false);
   const [activeButtons, setActiveButtons] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    setTimeout(() => setActiveItem(visibleSectionIndex), 600);
+  }, []);
 
   useEffect(() => {
     defineLanguage(lang);
@@ -60,7 +70,6 @@ const TopBar = () => {
 
   useEffect(() => {
     setActiveItem(visibleSectionIndex);
-    setActiveItem(visibleSectionIndex);
     const handleResize = () => {
       setActiveItem(visibleSectionIndex);
     };
@@ -92,59 +101,58 @@ const TopBar = () => {
   };
 
   return (
-    <div className={styles.content}>
-      <nav className={styles.menu} ref={menuRef}>
+    <div className={`${styles.content} `}>
+      <nav className={`${styles.menu} `} ref={menuRef}>
         <div
-          className={`${styles.logo} animate__animated animate__slideInDown `}
+          className={`${styles.logo} animate__animated animate__backInDown `}
         >
           MR.
         </div>
         <ul onMouseOver={() => setShowButtons(false)}>
           <li
-            className={"animate__animated animate__slideInDown"}
+            className={"animate__animated animate__backInDown"}
             onMouseEnter={() => updateUnderline(0)}
-            onMouseOut={onMouseOut}
-            id={"home"}
+            onMouseOut={onMouseOut} 
           >
-            <Link to={"home"} spy={true} smooth={true} duration={300}>
+            <Link to={"home"} spy={true} smooth={true} duration={100} offset={-100}> 
               {defineLanguage(lang).home}
             </Link>
           </li>
           <li
-            className={"animate__animated animate__slideInDown"}
+            className={"animate__animated animate__backInDown"}
             onMouseEnter={() => updateUnderline(1)}
             onMouseOut={onMouseOut}
           >
-            <Link to={"skills"} spy={true} smooth={true} duration={300}>
+            <Link to={"skills"} spy={true} smooth={true} duration={100}>
               {defineLanguage(lang).skills}
             </Link>
           </li>
           <li
-            className={"animate__animated animate__slideInDown"}
+            className={"animate__animated animate__backInDown"}
             onMouseEnter={() => updateUnderline(2)}
             onMouseOut={onMouseOut}
           >
-            <Link to={"works"} spy={true} smooth={true} duration={300}>
+            <Link to={"works"} spy={true} smooth={true} duration={100}>
               {defineLanguage(lang).works}
             </Link>
           </li>
           <li
-            className={"animate__animated animate__slideInDown"}
+            className={"animate__animated animate__backInDown"}
             onMouseEnter={() => updateUnderline(3)}
             onMouseOut={onMouseOut}
           >
-            <Link to={"contact"} spy={true} smooth={true} duration={300}>
+            <Link to={"contact"} spy={true} smooth={true} duration={100}>
               {defineLanguage(lang).contact}
             </Link>
           </li>
           <div
-            className={`${styles.animation} animate__animated animate__fadeInRightBig`}
+            className={`${styles.animation} animate__animated  animate__bounceInLeft`}
             style={underlineStyle}
           ></div>
         </ul>
         <div
           onMouseEnter={() => setShowButtons(true)}
-          className={`${styles.actions_lang_container} animate__animated animate__slideInDown`}
+          className={`${styles.actions_lang_container} animate__animated animate__backInDown`}
           onClick={() => setShowButtons(!showButtons)}
         >
           <div>

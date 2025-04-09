@@ -8,15 +8,15 @@
 
 .menu {
     width: 100%;
-    max-width: 70%;
+    max-width: 65%;
     display: flex;
     position: fixed;
     align-items: center;
-    justify-content: space-evenly;
+    justify-content: space-between;
     z-index: 99;
     font-weight: 300;
     font-size: 12pt;
-    background-color: black;
+    background-color: rgb(0, 0, 0);
 }
 
 .logo {

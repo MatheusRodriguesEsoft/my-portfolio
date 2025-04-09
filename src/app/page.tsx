@@ -3,18 +3,20 @@ import styles from "./page.module.css";
 import Image from "next/image";
 import { iconsSkills } from "@/utils/icons-skills";
 import { works } from "@/utils/works";
-import { Element, scroller } from "react-scroll";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useLayoutEffect, useState } from "react";
 import { ActionsContext } from "@/context/ActionsContext";
 import Typewriter from "typewriter-effect";
-
-import "animate.css";
+import { FaLinkedin, FaWhatsapp } from "react-icons/fa";
 import Link from "next/link";
+import Button from "./components/button/Button";
+import { HiOutlineMail } from "react-icons/hi";
+import { AiOutlineGithub, AiOutlineLinkedin } from "react-icons/ai";
 
 export default function Home() {
   const { sectionRefs, visibleSectionIndex } = useContext(ActionsContext);
   const [iconColor, setIconColor] = useState<string>("#FFFFFF");
   const [hoveredIcon, setHoveredIcon] = useState<number | null>(null);
+  const [startTyping, setStartTyping] = useState(false);
   const defaultColor = "#5c10f4";
 
   const handleMouseEnter = (iconId: number) => {
@@ -25,20 +27,25 @@ export default function Home() {
     setHoveredIcon(null);
   };
 
-  useEffect(() => {
-    console.log(visibleSectionIndex);
-  }, [visibleSectionIndex]);
+  useLayoutEffect(() => {
+    setTimeout(() => {
+      setStartTyping(true);
+    }, 1000);
+  }, []);
 
   return (
     <main className={styles.main}>
-      <div className={styles.top_content}></div>
       <div className={styles.content}>
-        <Element name={"home"} className={"element"} id={"home"}>
-          <section className={styles.section} ref={sectionRefs[0]} id={"home"}>
-            <div className={styles.home_content}>
-              <span className={styles.span}>Hey, I`m</span>
-              <h1 className={styles.h1}>Matheus Rodrigues</h1>
-              <div className={styles.p}>
+        <section
+          className={`${styles.section} home home_content`}
+          ref={sectionRefs[0]}
+          id={"home"}
+        >
+          <div className={`${styles.home_content}`}>
+            <span className={`${styles.span} span  `}>Hey, I`m</span>
+            <h1 className={`${styles.h1} h1 `}>Matheus Rodrigues</h1>
+            <div className={`${styles.p} p `}>
+              {startTyping && (
                 <Typewriter
                   options={{
                     strings: [
@@ -46,113 +53,94 @@ export default function Home() {
                     ],
                     autoStart: true,
                     loop: false,
-                    delay: 20,
+                    delay: 1.5,
                     deleteSpeed: Infinity,
                   }}
                 />
-              </div>
+              )}
             </div>
-          </section>
-        </Element>
-        <Element name={"skills"} className={"element"} id={"skills"}>
-          <section
-            className={styles.section}
-            ref={sectionRefs[1]}
-            id={"skills"}
-          >
-            <div className={styles.skills_content}>
-              {/* <span className={`${styles.bio}`}>
-                Desde 2018 atuando como Engenheiro de Software e desenvolvedor
-                web Full Stack essas são minhas sikills:
-              </span> */}
-              <div className={styles.skills_icons_container}>
-                <div className={styles.skills_icons_card}>
-                  {iconsSkills.map((icon) => (
-                    <Link key={icon.id} href={icon.url} target={"_blank"}>
-                      <div
-                        className={styles.skill_icon}
-                        onMouseEnter={() => handleMouseEnter(icon.id)}
-                        onMouseLeave={handleMouseLeave}
-                      >
-                        {icon.Icon &&
-                          icon.Icon(
+            <div className={styles.btns}>
+            <Button width={'3rem'} icon={<FaWhatsapp />} />
+            <Button width={'3rem'} icon={<HiOutlineMail />} />
+            <Button width={'3rem'} icon={<FaLinkedin />} />
+            <Button width={'3rem'} icon={<AiOutlineGithub />} />
+            </div>
+           
+          </div>
+        </section>
+        <section
+          className={`${styles.section} skills skills_content`}
+          ref={sectionRefs[1]}
+          id={"skills"}
+        >
+          <div className={`${styles.skills_content} `}>
+            <div className={styles.skills_icons_container}>
+              <div className={styles.skills_icons_card}>
+                {iconsSkills.map((icon) => (
+                  <Link key={icon.id} href={icon.url} target={"_blank"}>
+                    <div
+                      className={`${styles.skill_icon} skill_item`}
+                      onMouseEnter={() => handleMouseEnter(icon.id)}
+                      onMouseLeave={handleMouseLeave}
+                    >
+                      {icon.Icon &&
+                        icon.Icon(
+                          hoveredIcon === icon.id ? defaultColor : iconColor,
+                          `${styles.icon}`
+                        )}
+                      <span
+                        style={{
+                          color:
                             hoveredIcon === icon.id ? defaultColor : iconColor,
-                            `${styles.icon}`
-                          )}
-                        <span
-                          style={{
-                            color:
-                              hoveredIcon === icon.id
-                                ? defaultColor
-                                : iconColor,
-                          }}
-                          className={styles.skill_name}
-                        >
-                          {icon.name}
-                        </span>
-                      </div>
-                    </Link>
-                  ))}
-                </div>
+                        }}
+                        className={styles.skill_name}
+                      >
+                        {icon.name}
+                      </span>
+                    </div>
+                  </Link>
+                ))}
               </div>
-              {/* <span className={`${styles.bio}`}>
-                " Sou um engenheiro de software com uma sólida formação e anos
-                de experiência como desenvolvedor full stack, trago um
-                compromisso inabalável com a excelência técnica e a inovação.
-                Meu trabalho vai além de simplesmente escrever linhas de código;
-                é sobre criar soluções robustas e elegantes que impulsionam a
-                experiência do usuário e fazem a diferença no mundo digital. Sou
-                motivado pela busca constante do conhecimento e pela resolução
-                criativa de problemas, sempre buscando os melhores padrões e
-                práticas da indústria. Se você está procurando um profissional
-                que não apenas entregue resultados, mas os eleve a um novo
-                patamar, estou pronto para colaborar em seu próximo projeto.
-                Vamos construir algo extraordinário juntos?! "
-              </span> */}
             </div>
-          </section>
-        </Element>
-        <Element name={"works"} className={"element"} id={"works"}>
-          <section className={styles.section} ref={sectionRefs[2]} id={"works"}>
-            Meus Trabalhos:
-            <div>
-              {works.map((work) => (
-                <div key={work.id}>
-                  <span>{work.name}</span>
-                </div>
-              ))}
-            </div>
-          </section>
-        </Element>
-        <Element name={"contact"} className={"element"} id={"contact"}>
-          <section
-            className={styles.section}
-            ref={sectionRefs[3]}
-            id={"contact"}
-          >
-            Contato:
-            <div>
-              <Image
-                src={"/images/icons/email.svg"}
-                alt={"Email"}
-                width={50}
-                height={50}
-              />
-              <Image
-                src={"/images/icons/whatsapp.svg"}
-                alt={"Whatsapp"}
-                width={50}
-                height={50}
-              />
-              <Image
-                src={"/images/icons/linkedin.svg"}
-                alt={"Linkedin"}
-                width={50}
-                height={50}
-              />
-            </div>
-          </section>
-        </Element>
+          </div>
+        </section>
+        <section
+          className={`${styles.section} works works_content`}
+          ref={sectionRefs[2]}
+          id={"works"}
+        >
+          Meus Trabalhos:
+          <div>
+            {works.map((work) => (
+              <div key={work.id}>
+                <span>{work.name}</span>
+              </div>
+            ))}
+          </div>
+        </section>
+        <section className={styles.section} ref={sectionRefs[3]} id={"contact"}>
+          Contato:
+          <div>
+            <Image
+              src={"/images/icons/email.svg"}
+              alt={"Email"}
+              width={50}
+              height={50}
+            />
+            <Image
+              src={"/images/icons/whatsapp.svg"}
+              alt={"Whatsapp"}
+              width={50}
+              height={50}
+            />
+            <Image
+              src={"/images/icons/linkedin.svg"}
+              alt={"Linkedin"}
+              width={50}
+              height={50}
+            />
+          </div>
+        </section>
       </div>
     </main>
   );

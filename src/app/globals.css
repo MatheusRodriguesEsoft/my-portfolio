@@ -1,19 +1,22 @@
+@import "tailwindcss";
+
 :root {
-  --clr-neon:  #5c10f4;
-  --clr-bg:  #261c3c;
+  --clr-neon: #5c10f4;
+  --clr-bg: #261c3c;
 }
 
 * {
   border: 0;
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
   color: rgb(243, 248, 255);
-  /* background-color: #000000; */
-   background-color: #000000; 
+  background-color: #000000;
   font-family: "Heebo", sans-serif;
   font-family: "Nunito", sans-serif;
   font-style: normal;
 }
+
 html {
   scroll-snap-type: y mandatory;
   scroll-snap-stop: normal;
@@ -24,4 +27,13 @@ html {
 section {
   height: 100vh;
   scroll-snap-align: start;
+}
+
+
+.show {
+  opacity: 1;
+}
+
+.hidden {
+  opacity: 0;
 }

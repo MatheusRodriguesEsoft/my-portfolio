@@ -1,0 +1,36 @@
+
+.button {
+    height: 3rem;
+    border-radius: 3rem;
+    font-weight: 100;
+    background-color: none;
+    position: relative;
+    overflow: hidden;
+    transition: all .5s ease;
+    border: 2px solid #5c10f4;
+    font: inherit;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: .5rem;
+   
+}
+.button svg {
+    margin: none;
+    background-color: transparent;
+}
+
+
+.button span {
+    position: relative;
+    background-color: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14pt;
+}
+
+.button:hover {
+    background-color: #5c10f4;
+    cursor: pointer;
+}

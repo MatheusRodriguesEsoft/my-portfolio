@@ -23,6 +23,8 @@ export const ActionsContext = createContext({} as ActionsContextData);
 
 export function ActionsProvider({ children }: ActionsProviderProps) {
   const [visibleSectionIndex, setVisibleSectionIndex] = useState(0);
+  const [scrollDirection, setScrollDirection] = useState<"up" | "down">("down");
+  const [scrollY, setScrollY] = useState(0);
   const sectionRefs = [useRef(null), useRef(null), useRef(null), useRef(null)];
   const sections = ["home", "skills", "works", "contact"];
 
@@ -37,6 +39,8 @@ export function ActionsProvider({ children }: ActionsProviderProps) {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
           setVisibleSectionIndex(sections.indexOf(entry.target.id));
+          let section = document.querySelector(`.${entry.target.id}`);
+          section?.classList.add("show");
         }
       });
     };
@@ -55,6 +59,33 @@ export function ActionsProvider({ children }: ActionsProviderProps) {
       observer.disconnect();
     };
   }, [sectionRefs]);
+
+ 
+  useEffect(() => {
+    let lastScrollY = window.scrollY;
+
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      setScrollDirection(currentScrollY > lastScrollY ? "down" : "up");
+      setScrollY(currentScrollY);
+      lastScrollY = currentScrollY;
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
+  useEffect(() => {
+    moveScroll(scrollY, scrollDirection);
+  }, [scrollY, scrollDirection]);
+
+
+
+  const moveScroll = (height: number, direction: string) => {
+    
+  };
 
   return (
     <ActionsContext.Provider value={{ sectionRefs, visibleSectionIndex }}>
