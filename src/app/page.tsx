@@ -49,7 +49,7 @@ export default function Home() {
                 <Typewriter
                   options={{
                     strings: [
-                      "I'm a software engineer based in Toronto, Canada, I enjoy creating things that live on the internet, whether that's websites, apps or anything in between. I've been freelancing for four years while studying at university and have managed to gain a fair amount of experience and valuable knowledge from all sorts of fields throughout my projects/work.",
+                      "I'm a software engineer based in Formosa, Brazil, I enjoy creating things that live on the internet, whether that's websites, apps or anything in between. I've been freelancing for four years while studying at university and have managed to gain a fair amount of experience and valuable knowledge from all sorts of fields throughout my projects/work.",
                     ],
                     autoStart: true,
                     loop: false,
